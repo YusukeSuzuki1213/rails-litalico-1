@@ -1,0 +1,57 @@
+<p id="notice"><%= notice %></p>
+
+<div class="index-page">
+  <h1>TODOアプリ</h1>
+  <%= render 'form', task: @dummy %>
+  <div class = "index-page__tasks">
+   <div class = "index-page__task-list"> 
+    <h2>TODO</h2>
+    <div class = "task-list">
+      <% @todos.each do |todo| %>
+        <div class="task-list__item task">
+          <div class="task__name">
+            <%= todo.name %>
+          </div>
+          <div class="task__body">
+            <%= todo.body %>
+          </div>
+          <div class="task__buttons">
+            <div class="task__edit">
+              <%= link_to '編集', edit_task_path(todo.id) %>
+            </div>
+            <div class="task__toggle">
+              <%= link_to 'DONEにする', task_path(id:todo.id, task:{id:todo.id, name:todo.name, body:todo.body, isdone: !(todo.isdone)}), method: :put %>
+            </div>
+          </div>
+        </div>
+    <% end %>
+    </div>
+   </div>
+
+   <div class = "index-page__task-list"> 
+     <h2>DONE</h2>
+     <div class = "task-list">
+      <% @dones.each do |done| %>
+        <div class="task-list__item task">
+          <div class="task__name">
+            <%= done.name %>
+          </div>
+          <div class="task__body">
+            <%= done.body %>
+          </div>
+          <div class="task__buttons">
+            <div class="task__edit">
+              <%= link_to '編集', edit_task_path(done.id) %>
+            </div>
+            <div class="task__toggle">
+             <%= link_to 'TODOにする', task_path(id:done.id, task:{id:done.id, name:done.name, body:done.body, isdone: !(done.isdone)}), method: :put %>
+            </div>
+          </div>
+        </div>
+    <% end %>
+     </div>
+   </div>
+  </div>
+</div>
+
+

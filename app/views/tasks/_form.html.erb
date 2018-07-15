@@ -1,0 +1,8 @@
+  <%= form_with(model: task, class: 'index-page__form') do |f| %>
+    <%= f.label :name %> 
+    <%= f.text_field :name, size: 25 %>
+    <%= f.label :body %> 
+    <%= f.text_field :body, size: 25 %>
+    <%= f.hidden_field :isdone, :value => task.isdone %>
+    <%= f.submit %>
+  <% end %>
